@@ -1,0 +1,25 @@
+<!--操作记录页-->
+<view class="container">
+  <view class="card">
+    <view class="card-title">📝 {{date ? date + ' 的' : ''}}操作记录</view>
+
+    <view wx:if="{{loading}}" class="empty-tip">加载中...</view>
+
+    <view wx:elif="{{logs.length === 0}}" class="empty-tip">暂无操作记录~</view>
+
+    <view wx:else class="log-list">
+      <view wx:for="{{logs}}" wx:key="id" class="log-item">
+        <view class="log-header">
+          <text class="log-user">{{item.userName || '系统'}}</text>
+          <text class="log-time text-muted">{{item.createdAt}}</text>
+        </view>
+        <view class="log-content">{{item.content}}</view>
+        <view class="log-meta">
+          <text class="mini-tag">{{item.module}}</text>
+          <text class="mini-tag">{{item.action}}</text>
+          <text wx:if="{{item.targetDate}}" class="text-muted" style="font-size:22rpx">{{item.targetDate}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

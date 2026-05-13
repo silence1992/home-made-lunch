@@ -1,0 +1,39 @@
+<!--评价页-->
+<view class="container">
+  <view class="card">
+    <view class="card-title">⭐ {{date}} 餐食评价</view>
+
+    <!-- 今日菜谱 -->
+    <view class="menu-preview mb-20">
+      <text class="text-muted">今日菜谱：</text>
+      <view class="menu-names">
+        <text wx:for="{{todayMenu}}" wx:key="recipeId" class="menu-tag">{{item.recipeName}}</text>
+        <text wx:if="{{todayMenu.length === 0}}" class="text-muted">暂无</text>
+      </view>
+    </view>
+
+    <!-- 星级选择 -->
+    <view class="rating-section">
+      <text class="rating-label">评分</text>
+      <view class="stars-large">
+        <text wx:for="{{[1,2,3,4,5]}}" wx:key="*this" 
+              class="star-large {{rating >= item ? 'star-active' : 'star-inactive'}}"
+              data-star="{{item}}" bindtap="selectStar">★</text>
+      </view>
+      <text class="rating-text">
+        {{rating === 5 ? '太棒了！' : rating === 4 ? '不错哦~' : rating === 3 ? '还可以' : rating === 2 ? '一般般' : '需要改进'}}
+      </text>
+    </view>
+
+    <!-- 评价内容 -->
+    <view class="comment-section">
+      <text class="rating-label">评价（选填）</text>
+      <textarea class="input-box textarea-box" placeholder="说说你的感受吧~" 
+                value="{{comment}}" bindinput="onCommentInput" maxlength="200" />
+    </view>
+
+    <button class="btn-primary mt-20" bindtap="submitRating">
+      {{existingRating ? '修改评价' : '提交评价'}}
+    </button>
+  </view>
+</view>

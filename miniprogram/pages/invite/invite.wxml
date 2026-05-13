@@ -1,0 +1,27 @@
+<!--邀请页-->
+<view class="container">
+  <view class="card text-center">
+    <view class="invite-icon">📨</view>
+    <view class="invite-title">加入家庭</view>
+
+    <!-- 输入邀请码 -->
+    <view wx:if="{{!inviteInfo}}" class="invite-input-section">
+      <input class="input-box" placeholder="请输入邀请码" value="{{code}}" bindinput="onCodeInput" />
+      <button class="btn-primary mt-20" bindtap="queryInvite">查询</button>
+    </view>
+
+    <!-- 邀请信息 -->
+    <view wx:if="{{inviteInfo}}" class="invite-detail">
+      <view class="invite-family">家庭：{{inviteInfo.familyName}}</view>
+      <view class="invite-role">角色：{{inviteInfo.roleName}}</view>
+
+      <view wx:if="{{inviteInfo.expired}}" class="text-muted mt-20">
+        邀请已过期，请联系管理员重新生成~
+      </view>
+      <view wx:elif="{{inviteInfo.used}}" class="text-muted mt-20">
+        邀请码已被使用~
+      </view>
+      <button wx:else class="btn-primary mt-20" bindtap="acceptInvite">接受邀请，加入家庭</button>
+    </view>
+  </view>
+</view>

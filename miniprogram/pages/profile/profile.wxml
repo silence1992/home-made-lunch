@@ -1,0 +1,41 @@
+<!--个人中心-->
+<view class="container">
+  <view wx:if="{{userInfo}}" class="profile-page">
+    <!-- 用户信息卡片 -->
+    <view class="card profile-card">
+      <image class="avatar-large" src="{{userInfo.avatarUrl}}" mode="aspectFill"></image>
+      <view class="profile-info">
+        <text class="profile-name">{{userInfo.nickname}}</text>
+        <text class="profile-role tag {{userInfo.role === 'ADMIN' ? 'tag-default' : ''}}">
+          {{userInfo.role === 'ADMIN' ? '管理员' : userInfo.role === 'COOK' ? '厨师' : userInfo.role === 'DINER' ? '就餐者' : '未加入家庭'}}
+        </text>
+      </view>
+      <button class="btn-secondary btn-small" bindtap="showEdit">编辑资料</button>
+    </view>
+
+    <!-- 功能列表 -->
+    <view class="card">
+      <view class="menu-item-row" bindtap="goToLogs">
+        <text>📝 操作记录</text>
+        <text class="arrow">›</text>
+      </view>
+      <view class="divider"></view>
+      <view class="menu-item-row" bindtap="logout">
+        <text>🚪 退出登录</text>
+        <text class="arrow">›</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 编辑弹窗 -->
+  <view wx:if="{{showEditModal}}" class="modal-mask" bindtap="hideEdit">
+    <view class="modal-content" catchtap="">
+      <view class="modal-title">✏️ 编辑资料</view>
+      <view class="mb-20">
+        <text class="text-muted">昵称</text>
+        <input class="input-box" value="{{editNickname}}" bindinput="onNicknameInput" />
+      </view>
+      <button class="btn-primary" bindtap="saveProfile">保存</button>
+    </view>
+  </view>
+</view>

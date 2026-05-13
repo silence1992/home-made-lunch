@@ -1,0 +1,90 @@
+<!--菜谱管理页-->
+<view class="container">
+  <!-- Tab切换 -->
+  <view class="tab-bar">
+    <view class="tab-item {{activeTab === 'recipe' ? 'tab-active' : ''}}" 
+          data-tab="recipe" bindtap="switchTab">🍲 菜谱</view>
+    <view class="tab-item {{activeTab === 'tag' ? 'tab-active' : ''}}" 
+          data-tab="tag" bindtap="switchTab">🏷️ 标签</view>
+  </view>
+
+  <!-- 菜谱列表 -->
+  <block wx:if="{{activeTab === 'recipe'}}">
+    <view class="flex-between mb-20">
+      <text class="section-title">共 {{recipes.length}} 道菜谱</text>
+      <button class="btn-primary btn-small" bindtap="showAddRecipe">+ 新菜谱</button>
+    </view>
+
+    <view wx:if="{{recipes.length === 0}}" class="empty-tip">还没有菜谱，快去添加吧~</view>
+
+    <view wx:for="{{recipes}}" wx:key="id" class="card recipe-card">
+      <view class="flex-between">
+        <view class="recipe-info">
+          <text class="recipe-name">{{item.name}}</text>
+          <text wx:if="{{item.isDefault}}" class="tag tag-default">默认</text>
+        </view>
+        <view wx:if="{{!item.isDefault}}" class="recipe-actions">
+          <text class="action-btn edit-btn" data-recipe="{{item}}" bindtap="showEditRecipe">编辑</text>
+          <text class="action-btn delete-btn" data-recipe="{{item}}" bindtap="deleteRecipe">删除</text>
+        </view>
+      </view>
+      <view wx:if="{{item.description}}" class="recipe-desc text-muted">{{item.description}}</view>
+      <view class="recipe-tags">
+        <text wx:for="{{item.tags}}" wx:for-item="tag" wx:key="id" class="tag">{{tag.name}}</text>
+      </view>
+    </view>
+  </block>
+
+  <!-- 标签列表 -->
+  <block wx:if="{{activeTab === 'tag'}}">
+    <view class="flex-between mb-20">
+      <text class="section-title">共 {{tags.length}} 个标签</text>
+      <button class="btn-primary btn-small" bindtap="showAddTag">+ 新标签</button>
+    </view>
+
+    <view wx:if="{{tags.length === 0}}" class="empty-tip">还没有标签~</view>
+
+    <view wx:for="{{tags}}" wx:key="id" class="card tag-card">
+      <view class="flex-between">
+        <view class="flex-row">
+          <text class="tag-name">{{item.name}}</text>
+          <text wx:if="{{item.isDefault}}" class="tag tag-default" style="margin-left:10rpx">默认</text>
+        </view>
+        <view wx:if="{{!item.isDefault}}" class="recipe-actions">
+          <text class="action-btn edit-btn" data-tag="{{item}}" bindtap="showEditTag">编辑</text>
+          <text class="action-btn delete-btn" data-tag="{{item}}" bindtap="deleteTag">删除</text>
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <!-- 菜谱编辑弹窗 -->
+  <view wx:if="{{showRecipeModal}}" class="modal-mask" bindtap="hideRecipeModal">
+    <view class="modal-content" catchtap="">
+      <view class="modal-title">{{editingRecipe ? '编辑菜谱' : '新建菜谱'}} 🍲</view>
+      <input class="input-box" placeholder="菜谱名称" value="{{recipeName}}" bindinput="onRecipeNameInput" />
+      <textarea class="input-box textarea-box" placeholder="菜谱描述（选填）" 
+                value="{{recipeDesc}}" bindinput="onRecipeDescInput" />
+      <view class="mb-20">
+        <text class="text-muted">选择标签：</text>
+        <view class="tag-selector">
+          <view wx:for="{{tags}}" wx:key="id" 
+                class="tag-option {{selectedTagIds.indexOf(item.id) >= 0 ? 'tag-selected' : ''}}"
+                data-tagid="{{item.id}}" bindtap="toggleTag">
+            {{item.name}}
+          </view>
+        </view>
+      </view>
+      <button class="btn-primary" bindtap="saveRecipe">保存</button>
+    </view>
+  </view>
+
+  <!-- 标签编辑弹窗 -->
+  <view wx:if="{{showTagModal}}" class="modal-mask" bindtap="hideTagModal">
+    <view class="modal-content" catchtap="">
+      <view class="modal-title">{{editingTag ? '编辑标签' : '新建标签'}} 🏷️</view>
+      <input class="input-box" placeholder="标签名称" value="{{tagName}}" bindinput="onTagNameInput" />
+      <button class="btn-primary" bindtap="saveTag">保存</button>
+    </view>
+  </view>
+</view>

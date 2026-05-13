@@ -1,0 +1,50 @@
+.log-list {
+  padding: 0;
+}
+
+.log-item {
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.log-item:last-child {
+  border-bottom: none;
+}
+
+.log-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8rpx;
+}
+
+.log-user {
+  font-size: 26rpx;
+  font-weight: 500;
+  color: #FF9A76;
+}
+
+.log-time {
+  font-size: 22rpx;
+}
+
+.log-content {
+  font-size: 28rpx;
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 8rpx;
+}
+
+.log-meta {
+  display: flex;
+  gap: 8rpx;
+  align-items: center;
+}
+
+.mini-tag {
+  font-size: 18rpx;
+  background: #f5f5f5;
+  color: #999;
+  padding: 4rpx 12rpx;
+  border-radius: 8rpx;
+}

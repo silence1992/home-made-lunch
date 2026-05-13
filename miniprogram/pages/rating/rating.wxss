@@ -1,0 +1,66 @@
+.menu-preview {
+  padding: 16rpx 0;
+}
+
+.menu-names {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10rpx;
+  margin-top: 8rpx;
+}
+
+.menu-tag {
+  background: #FFF0E6;
+  color: #FF9A76;
+  padding: 8rpx 20rpx;
+  border-radius: 20rpx;
+  font-size: 26rpx;
+}
+
+.rating-section {
+  text-align: center;
+  padding: 30rpx 0;
+}
+
+.rating-label {
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 16rpx;
+  display: block;
+}
+
+.stars-large {
+  display: flex;
+  justify-content: center;
+  margin: 20rpx 0;
+}
+
+.star-large {
+  font-size: 64rpx;
+  margin: 0 10rpx;
+  transition: all 0.2s;
+}
+
+.star-active {
+  color: #FFD700;
+}
+
+.star-inactive {
+  color: #e0e0e0;
+}
+
+.rating-text {
+  font-size: 28rpx;
+  color: #FF9A76;
+  margin-top: 10rpx;
+}
+
+.comment-section {
+  margin-top: 20rpx;
+}
+
+.textarea-box {
+  height: 160rpx;
+  width: 100%;
+  box-sizing: border-box;
+}

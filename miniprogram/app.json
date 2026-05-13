@@ -1,0 +1,53 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/family/family",
+    "pages/recipe/recipe",
+    "pages/profile/profile",
+    "pages/menu/menu",
+    "pages/rating/rating",
+    "pages/invite/invite",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#FF9A76",
+    "navigationBarTitleText": "家庭便当",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#FFF5EE"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#FF9A76",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/home-active.png"
+      },
+      {
+        "pagePath": "pages/family/family",
+        "text": "家庭",
+        "iconPath": "images/family.png",
+        "selectedIconPath": "images/family-active.png"
+      },
+      {
+        "pagePath": "pages/recipe/recipe",
+        "text": "菜谱",
+        "iconPath": "images/recipe.png",
+        "selectedIconPath": "images/recipe-active.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "images/profile.png",
+        "selectedIconPath": "images/profile-active.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

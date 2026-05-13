@@ -1,0 +1,88 @@
+<!--家庭管理页-->
+<view class="container">
+  <view wx:if="{{loading}}" class="empty-tip">加载中...</view>
+
+  <!-- 未加入家庭 -->
+  <view wx:elif="{{!hasFamily}}" class="card text-center">
+    <view class="empty-icon">🏠</view>
+    <view class="empty-text">你还没有加入家庭哦~</view>
+    <view class="empty-hint text-muted">创建一个家庭，邀请家人一起管理午餐吧</view>
+    <button class="btn-primary mt-20" bindtap="showCreate">创建家庭</button>
+  </view>
+
+  <!-- 已有家庭 -->
+  <block wx:else>
+    <!-- 家庭信息 -->
+    <view class="card">
+      <view class="family-header">
+        <text class="family-icon">🏡</text>
+        <view class="family-info">
+          <text class="family-name">{{familyInfo.name}}</text>
+          <text class="text-muted">邀请码: {{familyInfo.inviteCode}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 成员列表 -->
+    <view class="card">
+      <view class="flex-between mb-20">
+        <text class="card-title" style="margin-bottom:0">👨‍👩‍👧‍👦 家庭成员</text>
+        <button wx:if="{{isAdmin}}" class="btn-primary btn-small" bindtap="showInvite">邀请成员</button>
+      </view>
+      <view class="member-list">
+        <view wx:for="{{members}}" wx:key="id" class="member-item">
+          <view class="flex-row">
+            <image class="avatar" src="{{item.avatarUrl}}" mode="aspectFill"></image>
+            <view class="member-info">
+              <text class="member-name">{{item.nickname}}</text>
+              <text class="member-role tag {{item.role === 'ADMIN' ? 'tag-default' : ''}}">
+                {{item.role === 'ADMIN' ? '管理员' : item.role === 'COOK' ? '厨师' : '就餐者'}}
+              </text>
+            </view>
+          </view>
+          <button wx:if="{{isAdmin && item.role !== 'ADMIN'}}" 
+                  class="btn-danger btn-small"
+                  data-userid="{{item.id}}" 
+                  data-nickname="{{item.nickname}}"
+                  bindtap="kickMember">移出</button>
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <!-- 创建家庭弹窗 -->
+  <view wx:if="{{showCreateModal}}" class="modal-mask" bindtap="hideCreate">
+    <view class="modal-content" catchtap="">
+      <view class="modal-title">🏠 创建家庭</view>
+      <input class="input-box" placeholder="给家庭起个温馨的名字吧~" 
+             value="{{familyName}}" bindinput="onFamilyNameInput" />
+      <button class="btn-primary" bindtap="createFamily">创建</button>
+    </view>
+  </view>
+
+  <!-- 邀请弹窗 -->
+  <view wx:if="{{showInviteModal}}" class="modal-mask" bindtap="hideInvite">
+    <view class="modal-content" catchtap="">
+      <view class="modal-title">📨 邀请新成员</view>
+      <view class="mb-20">
+        <text class="text-muted">选择邀请角色：</text>
+        <radio-group bindchange="onRoleChange" class="role-group">
+          <label class="role-option">
+            <radio value="COOK" checked="{{inviteRole === 'COOK'}}" color="#FF9A76" />
+            <text>厨师 🍳</text>
+          </label>
+          <label class="role-option">
+            <radio value="DINER" checked="{{inviteRole === 'DINER'}}" color="#FF9A76" />
+            <text>就餐者 🍽️</text>
+          </label>
+        </radio-group>
+      </view>
+      <button class="btn-primary mb-20" bindtap="generateInvite">生成邀请码</button>
+      <view wx:if="{{inviteLink}}" class="invite-result">
+        <view class="invite-code">{{inviteLink.code}}</view>
+        <text class="text-muted">有效期7天，请将邀请码发送给对方</text>
+        <button class="btn-secondary btn-small mt-20" bindtap="copyInviteCode">复制邀请码</button>
+      </view>
+    </view>
+  </view>
+</view>

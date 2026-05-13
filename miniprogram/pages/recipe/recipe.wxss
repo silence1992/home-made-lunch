@@ -1,0 +1,104 @@
+.tab-bar {
+  display: flex;
+  background: #fff;
+  border-radius: 16rpx;
+  margin-bottom: 20rpx;
+  overflow: hidden;
+}
+
+.tab-item {
+  flex: 1;
+  text-align: center;
+  padding: 24rpx 0;
+  font-size: 28rpx;
+  color: #999;
+  transition: all 0.3s;
+}
+
+.tab-active {
+  color: #FF9A76;
+  font-weight: bold;
+  background: #FFF5EE;
+}
+
+.section-title {
+  font-size: 26rpx;
+  color: #999;
+}
+
+.recipe-card {
+  padding: 24rpx 30rpx;
+}
+
+.recipe-info {
+  display: flex;
+  align-items: center;
+}
+
+.recipe-name {
+  font-size: 32rpx;
+  font-weight: 500;
+  margin-right: 10rpx;
+}
+
+.recipe-desc {
+  margin-top: 8rpx;
+  font-size: 24rpx;
+}
+
+.recipe-tags {
+  margin-top: 12rpx;
+}
+
+.recipe-actions {
+  display: flex;
+  gap: 20rpx;
+}
+
+.action-btn {
+  font-size: 24rpx;
+  padding: 8rpx 16rpx;
+}
+
+.edit-btn {
+  color: #FF9A76;
+}
+
+.delete-btn {
+  color: #ff6b6b;
+}
+
+.tag-card {
+  padding: 24rpx 30rpx;
+}
+
+.tag-name {
+  font-size: 30rpx;
+  font-weight: 500;
+}
+
+.textarea-box {
+  height: 120rpx;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.tag-selector {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 12rpx;
+  gap: 12rpx;
+}
+
+.tag-option {
+  padding: 10rpx 24rpx;
+  border-radius: 30rpx;
+  font-size: 24rpx;
+  background: #f5f5f5;
+  color: #666;
+}
+
+.tag-selected {
+  background: #FF9A76;
+  color: #fff;
+}

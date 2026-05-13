@@ -1,0 +1,35 @@
+.profile-card {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.profile-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-name {
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.profile-role {
+  margin-top: 8rpx;
+  display: inline-block;
+  width: fit-content;
+}
+
+.menu-item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24rpx 0;
+  font-size: 30rpx;
+}
+
+.arrow {
+  color: #ccc;
+  font-size: 36rpx;
+}
