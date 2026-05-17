@@ -31,6 +31,18 @@ SPRING_OPTS="--spring.profiles.active=prod"
 # Git配置
 GIT_BRANCH="main"
 
+# 加载环境变量配置文件（敏感信息如数据库密码、微信密钥等）
+ENV_FILE="${APP_HOME}/.env"
+if [ -f "${ENV_FILE}" ]; then
+    echo "[INFO] 加载环境变量配置: ${ENV_FILE}"
+    set -a
+    source "${ENV_FILE}"
+    set +a
+else
+    echo "[WARN] 环境变量配置文件不存在: ${ENV_FILE}"
+    echo "[WARN] 将使用 application.yml 中的默认值"
+fi
+
 # 创建日志目录
 mkdir -p ${LOG_DIR}
 
